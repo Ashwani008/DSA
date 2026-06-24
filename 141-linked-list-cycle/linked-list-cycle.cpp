@@ -9,8 +9,7 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        ListNode* sptr = head;
-        ListNode* fptr = head;
+        ListNode *sptr = head, *fptr = head;
         if(sptr == NULL || fptr->next == NULL)
             return false;
         
