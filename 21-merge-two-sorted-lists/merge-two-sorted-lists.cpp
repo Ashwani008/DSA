@@ -15,25 +15,30 @@ public:
             return list2;
         if(list2 == NULL)
             return list1;
-        ListNode *res, *temphead=NULL;
+        ListNode *temphead=NULL;
+        ListNode *res;
+        // temphead = res->next;
         if (list1->val <= list2->val) {
             res= new ListNode(list1->val);
+            res->next = list1;
             list1 = list1->next;
         }
         else {
             res = new ListNode(list2->val);
+            res->next = list2;
             list2 = list2->next;
         }
         temphead = res;
         while(list1 != NULL && list2 != NULL) {
             if(list1->val < list2->val) {
-                ListNode* temp = new ListNode(list1->val);
-                res->next = temp;
+                // ListNode* temp = new ListNode(list1->val);
+                res->next = list1;
+                // res->next = temp;
                 list1=list1->next;
                 res = res->next;
             } else {
-                ListNode* temp = new ListNode(list2->val);
-                res->next = temp;
+                // ListNode* temp = new ListNode(list2->val);
+                res->next = list2;
                 list2=list2->next;
                 res = res->next;
             }
