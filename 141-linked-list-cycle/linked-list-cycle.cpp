@@ -11,10 +11,9 @@ public:
     bool hasCycle(ListNode *head) {
         ListNode* sptr = head;
         ListNode* fptr = head;
-        if(head == NULL)
+        if(sptr == NULL || fptr->next == NULL)
             return false;
-        if (fptr->next == NULL)
-            return false;
+        
         fptr = fptr->next->next;
         while(fptr != NULL && fptr->next != NULL) {
             if (sptr == fptr)
