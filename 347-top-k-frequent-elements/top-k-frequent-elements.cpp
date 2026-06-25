@@ -4,7 +4,7 @@ public:
         bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) {
             // Return true if 'a' should come AFTER 'b' (lower priority)
             // For a Min-Heap, larger values have lower priority
-            return a.second < b.second; 
+            return a.second > b.second; 
         }
     };
 
@@ -23,6 +23,8 @@ public:
             int val = it.second;
 
             maxpq.push({key,val});
+            if(maxpq.size() > k)
+                maxpq.pop();
        }
 
         vector<int> ans;
