@@ -18,7 +18,7 @@ public:
         
         int lh = height(root->left);
         int rh = height(root->right);
-
+        maxdia = max(maxdia, lh+rh);
         int ans = max(lh, rh) + 1;
         return ans;
     }
@@ -28,13 +28,9 @@ public:
     int diameterOfBinaryTree(TreeNode* root) {
         if (root == NULL)
             return 0;
-        int lh = height(root->left);
-        int rh = height(root->right);
 
-        maxdia = max(maxdia, lh+rh);
+        height(root);
 
-        int dialh = diameterOfBinaryTree(root->left);
-        int diarh = diameterOfBinaryTree(root->right);
         return maxdia;
     }
 };
