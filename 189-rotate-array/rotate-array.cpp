@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void Reverse(vector<int>& nums, int s, int e) {
+        int l = s, r = e;
+        while(l <= r) {
+            int temp = nums[l];
+            nums[l] = nums[r];
+            nums[r] = temp;
+            l++;
+            r--;
+        }
+        return;
+    }
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size();
+        if(n == 1)
+            return;
+        k = k % n; 
+        if (k == 0) return;
+        Reverse(nums, 0, n-1);
+        Reverse(nums, 0, k-1);
+        Reverse(nums, k, n-1);
+        
+        return;
+    }
+};
