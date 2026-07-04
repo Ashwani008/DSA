@@ -2,20 +2,18 @@ class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
         map<int, int> mp;
-        int curSum =0;
-        mp[curSum] = -1;
-        int maxlen= 0;
-
+        mp[0] = -1;
+        int max_len = 0;
+        int sum =0, k =0;
+        
         for(int i =0; i<nums.size(); i++) {
-            if (nums[i] == 0)
-                nums[i] = -1;
-            curSum += nums[i];
-            if(mp.find(curSum) != mp.end()) {
-                maxlen = max(maxlen, i - mp[curSum]);
-            } else {
-                mp[curSum] =i;
-            }
+            int v = nums[i]==1 ? 1 : -1;
+            sum += v;
+            if(mp.find(sum) != mp.end())
+                max_len = max(max_len, i - mp[sum]);
+            if(mp.find(sum) == mp.end())
+                mp[sum] = i;
         }
-        return maxlen;
+        return max_len;
     }
 };
