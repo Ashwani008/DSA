@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        vector<int> ans;
+        // vector<int> ans;
         int mulres=1;
         vector<int> rmul(nums.size());
         int k = nums.size() -1;
@@ -15,10 +15,11 @@ public:
         for(int i =0; i<nums.size(); i++) {
             
             int val = rmul[i] * lmul;
-            ans.push_back(val);
+            rmul[i] = val;
+            // ans.push_back(val);
             lmul *= nums[i]; 
         }
-        return ans;
+        return rmul;
 
     }
 };
