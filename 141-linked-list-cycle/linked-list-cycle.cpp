@@ -9,16 +9,14 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        ListNode *sptr = head, *fptr = head;
-        if(sptr == NULL || fptr->next == NULL)
-            return false;
-        
-        fptr = fptr->next->next;
-        while(fptr != NULL && fptr->next != NULL) {
-            if (sptr == fptr)
+        map<ListNode*, int> mp;
+        ListNode* temp = head;
+        while(temp != NULL) {
+            if(mp.find(temp) == mp.end())
+                mp[temp] = 1;
+            else
                 return true;
-            sptr = sptr->next;
-            fptr = fptr->next->next;
+            temp = temp->next;
         }
         return false;
     }
