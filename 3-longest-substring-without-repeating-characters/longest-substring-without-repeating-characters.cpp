@@ -6,25 +6,15 @@ public:
         map<char, int> mp;
         
         while(r<n) {
-
             if(mp.find(s[r]) != mp.end()){
                 if(l <= mp[s[r]]){
-                    // maxlen = max(maxlen, r-l);
                     l = mp[s[r]] + 1;
-                    // mp[s[r]] = r;
-                } else{
-
-                    // maxlen = max(maxlen, r-l);
                 }
             }
             mp[s[r]] = r;
             r++;
             maxlen = max(maxlen, r-l);
-           
-            
-
         }
-    
         return maxlen;
     }
 };
