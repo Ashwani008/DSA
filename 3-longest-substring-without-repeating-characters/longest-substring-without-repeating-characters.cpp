@@ -9,9 +9,9 @@ public:
 
             if(mp.find(s[r]) != mp.end()){
                 if(l <= mp[s[r]]){
-                    maxlen = max(maxlen, r-l);
+                    // maxlen = max(maxlen, r-l);
                     l = mp[s[r]] + 1;
-                    mp[s[r]] = r;
+                    // mp[s[r]] = r;
                 } else{
 
                     // maxlen = max(maxlen, r-l);
