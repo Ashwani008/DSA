@@ -23,12 +23,13 @@ public:
 
         // return sl;
         int n = nums.size();
-        vector<int> vis(n+1, 0);
+        // vector<int> vis(n+1, 0);
         for(int i =0; i<n; i++) {
-            if(vis[nums[i]] == -1){
-                return nums[i];
+            int ix = abs(nums[i]);
+            if(nums[ix] < 0){
+                return ix;
             }
-            vis[nums[i]] = -1;
+            nums[ix] *= -1;
         }
         return -1;
     }
