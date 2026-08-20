@@ -2,48 +2,20 @@ class Solution {
 public:
     vector<string> summaryRanges(vector<int>& nums) {
         vector<string> ans;
-        int n = nums.size();
-        if(n == 0)
-            return ans;
+        
+        for(int i =0;i<nums.size(); i++) {
+            int st = nums[i];
 
-        int st = nums[0], end = nums[0];
-        bool include = false;
-
-        for(int i =0; i<n; i++) {
-            if( i == n-1){
-                string str = to_string(nums[i]);
-                if(include) {
-                    string str_s = to_string(st);
-                    string str_e = to_string(nums[i]);
-                    string temp = str_s;
-                    temp += "->";
-                    temp += str_e;
-                    ans.push_back(temp);
-                } else {
-                    string str_e = to_string(nums[i]);
-                    ans.push_back(str_e);
-                }
+            while((i+1 < nums.size()) && (nums[i] + 1 == nums[i+1]) ) {
+                i++;
             }
-            else if(nums[i] + 1 == nums[i+1] ){
-                if(!include){
-                    include = true;
-                    st = nums[i];
-                }
-                
+
+            if(st == nums[i]) {
+                ans.push_back(to_string(st));
             } else {
-                if(include) {
-                    string str_s = to_string(st);
-                    string str_e = to_string(nums[i]);
-                    string temp = str_s;
-                    temp += "->";
-                    temp += str_e;
-                    ans.push_back(temp);
-                } else {
-                    string str_e = to_string(nums[i]);
-                    ans.push_back(str_e);
-                }
-                include = false;
+                ans.push_back(to_string(st) + "->" + to_string(nums[i]));
             }
+
         }
         return ans;
     }
