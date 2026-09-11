@@ -19,6 +19,31 @@ public:
 
     }
 
+    void bfs(unordered_map<string, vector<pair<string, double>>> &gph, unordered_set<string> &vis, string src, string dst, double product, double & ans) {
+        queue<pair<string, double>> q;
+        q.push({src, 1.0});
+        // vis.clear();
+        // product = 1.0;
+        while(!q.empty()) {
+            string node = q.front().first;
+            double product = q.front().second;
+            q.pop();
+            vis.insert(node);
+
+            if(node == dst) {
+                ans = product;
+                return;
+            }
+            for(auto &it : gph[node]) {
+                if(vis.find(it.first) == vis.end()) {
+                    q.push({it.first, (product * it.second)});
+                    vis.insert(it.first);
+                }
+            }
+        }
+        return;
+    }
+
     vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries) {
         vector<double> res;
 
@@ -48,7 +73,8 @@ public:
             } else {
                 double product = 1.0;
                 //3. call dfs
-                dfs(gph, vis, src, dst, product, ans);
+                // dfs(gph, vis, src, dst, product, ans);
+                bfs(gph, vis, src, dst, product, ans);
                 res.push_back(ans);
             }
         }
