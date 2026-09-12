@@ -9,8 +9,8 @@ public:
             mp[k].push_back(s);
         }
         vector<vector<string>> ans;
-        for(auto [k,v] : mp){
-            ans.push_back(v);
+        for(auto it : mp){
+            ans.push_back(it.second);
         }
         return ans;
     }
