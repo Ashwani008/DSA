@@ -1,34 +1,28 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        int l =0, r =0, n = s.length(), wordlen = t.length();
-
-        if(n < wordlen)
-            return "";
         unordered_map<char, int> mp;
-        for(auto it : t)
-            mp[it]++;
+        for(const auto& c : t)
+            mp[c]++;
+        int l =0, r=0, n = s.length(),ix =0, minlen=INT_MAX;
 
-        unordered_map<char, int> wmp;
-        int required = mp.size();
-        int formed = 0;
-        int ix = 0, minlen = INT_MAX;
-        while(r < n) {
-            wmp[s[r]]++;
-
-            if(mp.count(s[r]) && mp[s[r]] == wmp[s[r]])
-                formed++;
-
-            while((l <= r) && (formed == required)) {
-                if(r-l+1 < minlen){
-                    minlen = r-l+1;
+        if(n < t.length())
+            return "";
+        unordered_map<char, int> othmp;
+        int found = 0, req = mp.size();
+        while(r < n){
+            othmp[s[r]]++;
+            if(mp.find(s[r]) != mp.end() && mp[s[r]] == othmp[s[r]])
+                found++;
+            
+            while(l <= r && found == req){
+                if(minlen > r-l+1) {
                     ix = l;
+                    minlen = r-l+1;
                 }
-
-                wmp[s[l]]--;
-                if(mp.count(s[l])  && wmp[s[l]] < mp[s[l]])
-                    formed--;
-
+                othmp[s[l]]--;
+                if(mp.count(s[l]) && mp[s[l]] > othmp[s[l]])
+                    found--;
                 l++;
             }
             r++;
