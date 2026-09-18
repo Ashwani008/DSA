@@ -10,6 +10,6 @@ public:
             }
         }
 
-        return k;
+        return j;
     }
 };
