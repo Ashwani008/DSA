@@ -23,13 +23,13 @@ public:
             if(t1->val <= t2->val) {
                 ListNode* nextptr = t1->next;
                 res->next = t1;
-                t1->next = t2;
+                // t1->next = t2;
                 t1 = nextptr;
                 res = res->next;
             } else {
                 ListNode* nextptr = t2->next;
                 res->next = t2;
-                t2->next = t1;
+                // t2->next = t1;
                 t2 = nextptr;
                 res = res->next;
             }
